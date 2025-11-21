@@ -1,0 +1,10 @@
+# Folder yang berat & bisa didownload ulang, jangan diupload
+node_modules/
+dist/
+
+# File RAHASIA (Dilarang keras masuk GitHub)
+.env
+
+# File sampah sistem (opsional)
+.DS_Store
+Thumbs.db

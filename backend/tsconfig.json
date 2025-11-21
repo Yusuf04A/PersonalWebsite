@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    /* Dasar */
+    "target": "es2016",
+    "module": "commonjs",            /* Ini kunci biar ts-node jalan lancar */
+    "moduleResolution": "node",
+    "esModuleInterop": true,         /* Ini yang bikin import express bisa jalan */
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+
+    /* Lokasi File */
+    "rootDir": "./src",              /* Kode kita ada di folder src */
+    "outDir": "./dist"               /* Hasil jadi nanti di folder dist */
+  },
+  "include": ["src/**/*"]
+}
