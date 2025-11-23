@@ -1,76 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react'; // Tambah useEffect
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import BlogList from './pages/BlogList';
+import Contact from './pages/Contact';
 
-// 1. Definisikan Tipe Data (Sama kayak di Backend tadi)
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  link: string;
-}
+// IMPORT ANIMASI
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  // 2. Ambil Data saat website dibuka
+  // INISIALISASI ANIMASI SAAT WEBSITE DIBUKA
   useEffect(() => {
-    fetch('http://localhost:3000/projects')
-      .then((res) => res.json())
-      .then((data) => {
-        setProjects(data);
-        setLoading(false);
-      })
-      .catch((err) => console.error("Gagal ambil data:", err));
+    AOS.init({
+      duration: 800, // Durasi animasi (ms)
+      once: true, // Animasi cuma sekali pas scroll ke bawah
+      offset: 100, // Mulai animasi sebelum elemen muncul full
+    });
   }, []);
 
   return (
-    // Container Utama (Gaya Minimalis)
-    <div style={{ 
-      fontFamily: "'Georgia', serif", // Font klasik clean
-      maxWidth: '800px', 
-      margin: '0 auto', 
-      padding: '40px 20px',
-      color: '#333',
-      lineHeight: '1.6'
-    }}>
-      
-      {/* Header */}
-      <header style={{ marginBottom: '60px', borderBottom: '1px solid #eee', paddingBottom: '20px' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 'normal', letterSpacing: '-1px' }}>
-          Nama Kamu.
-        </h1>
-        <p style={{ color: '#666', fontSize: '1.1rem' }}>
-          Mahasiswa Informatika | Semester 5
-        </p>
-      </header>
+    <Router>
+      <div className="container"> {/* Container sekarang lebih lebar (1280px) */}
+        <Navbar />
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
 
-      {/* Content: Projects */}
-      <section>
-        <h2 style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', color: '#999', marginBottom: '30px' }}>
-          Selected Projects
-        </h2>
-
-        {loading ? (
-          <p>Loading data...</p>
-        ) : (
-          <div style={{ display: 'grid', gap: '40px' }}>
-            {projects.map((project) => (
-              <article key={project.id}>
-                <h3 style={{ margin: '0 0 10px 0', fontSize: '1.5rem' }}>
-                  <a href={project.link} style={{ textDecoration: 'none', color: '#000' }}>
-                    {project.title} ↗
-                  </a>
-                </h3>
-                <p style={{ margin: 0, color: '#555' }}>
-                  {project.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        )}
-      </section>
-
-    </div>
+        <footer style={{ marginTop: '5rem', padding: '2rem 0', borderTop: '1px solid #e5e5e5', textAlign: 'center', color: '#999' }}>
+          © {new Date().getFullYear()} Nama Kamu. Built with React & Node.js.
+        </footer>
+      </div>
+    </Router>
   );
 }
 
