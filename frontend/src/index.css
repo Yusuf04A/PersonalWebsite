@@ -29,7 +29,7 @@ body {
 }
 
 section { scroll-margin-top: 100px; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.container { max-width: 1440px; margin: 0 auto; padding: 0 2rem; }
 
 /* --- ANIMATED GRADIENT TEXT (BARU) --- */
 .text-gradient-animated {
