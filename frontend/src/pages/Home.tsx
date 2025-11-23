@@ -103,18 +103,19 @@ export default function Home() {
 
             {/* ABOUT ME (TANPA KOTAK / GLASS CARD) */}
             <section id="about" className="container" style={{ marginBottom: '8rem' }}>
-                <div data-aos="fade-up"> {/* Div pembungkus biasa, tanpa background */}
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '5rem', alignItems: 'center' }}>
-                        {/* Foto */}
-                        <div style={{ position: 'relative' }}>
+                <div data-aos="fade-up">
+                    {/* GANTI DIV INI: Pakai className 'about-grid' */}
+                    <div className="about-grid">
+
+                        {/* Foto (Tambahkan className wrapper) */}
+                        <div className="about-image-wrapper" style={{ position: 'relative' }}>
                             <img src="/me.jpg" alt="Profile" style={{ width: '100%', borderRadius: '24px', objectFit: 'cover', aspectRatio: '1/1', filter: 'grayscale(20%)' }} />
-                            {/* Hiasan garis ungu simple di belakang */}
                             <div style={{ position: 'absolute', top: '20px', left: '-20px', width: '100%', height: '100%', border: '2px solid #8B5CF6', borderRadius: '24px', zIndex: -1 }}></div>
                         </div>
 
                         {/* Teks */}
                         <div>
-                            <h2 style={{ fontSize: '3.5rem', marginBottom: '2rem' }}>About Me.</h2>
+                            <h2 style={{ fontSize: '3.5rem', marginBottom: '2rem', lineHeight: '1.1' }}>About Me.</h2>
                             <p style={{ marginBottom: '1.5rem', color: '#D1D5DB', fontSize: '1.25rem', lineHeight: '1.8' }}>
                                 Saya adalah mahasiswa Informatika semester 5. Saya memiliki ketertarikan mendalam pada <b>Software Engineering</b> dan <b>User Interface Design</b>.
                             </p>
@@ -122,6 +123,7 @@ export default function Home() {
                                 Saya percaya bahwa kode yang baik tidak hanya berfungsi, tetapi juga mudah dibaca (clean code) dan mudah dirawat (maintainable). Saat ini saya sedang fokus mendalami React, TypeScript, dan Cloud Architecture.
                             </p>
                         </div>
+
                     </div>
                 </div>
             </section>

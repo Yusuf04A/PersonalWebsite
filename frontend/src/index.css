@@ -204,3 +204,33 @@ section { scroll-margin-top: 100px; }
 .skill-box:hover .progress-fill {
   /* Width diatur via inline style di React, CSS cuma handle transisinya */
 }
+
+/* --- RESPONSIVE LAYOUT (About Me) --- */
+
+/* Tampilan Default (Laptop) */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Kiri sempit, Kanan lebar */
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Tampilan HP (Layar < 900px) */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr; /* Jadi 1 Kolom (Atas Bawah) */
+    gap: 3rem;
+    text-align: center; /* Teks jadi rata tengah biar rapi */
+  }
+
+  /* Mengatur container foto biar di tengah saat di HP */
+  .about-image-wrapper {
+    margin: 0 auto; /* Posisi tengah */
+    max-width: 350px; /* Batasi lebarnya biar gak kegedean */
+  }
+  
+  /* Font size disesuaikan dikit biar gak kegedean di HP */
+  .about-grid h2 {
+    font-size: 2.5rem; 
+  }
+}
