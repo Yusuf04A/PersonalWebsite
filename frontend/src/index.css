@@ -14,7 +14,7 @@
   
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.1);
-  --font-stack: 'Outfit', sans-serif;
+  --font-stack: 'Poppins', sans-serif;
 }
 
 html { scroll-behavior: smooth; }
@@ -29,7 +29,7 @@ body {
 }
 
 section { scroll-margin-top: 100px; }
-.container { max-width: 1440px; margin: 0 auto; padding: 0 2rem; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
 
 /* --- ANIMATED GRADIENT TEXT (BARU) --- */
 .text-gradient-animated {
@@ -231,6 +231,72 @@ section { scroll-margin-top: 100px; }
   
   /* Font size disesuaikan dikit biar gak kegedean di HP */
   .about-grid h2 {
+    font-size: 2.5rem; 
+  }
+}
+
+h1 { 
+  font-size: clamp(2.5rem, 5vw, 5rem); 
+  font-weight: 800; 
+  letter-spacing: -0.03em; 
+  line-height: 1.1; 
+  color: var(--text-main); 
+}
+
+h2 { 
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  margin-bottom: 1.5rem; 
+  letter-spacing: -0.02em; 
+}
+
+h3 { 
+  font-size: 1.25rem; 
+  font-weight: 600; 
+  margin-bottom: 0.5rem; 
+}
+
+p { 
+  color: var(--text-muted); 
+  font-size: 1rem; 
+  margin-bottom: 1rem; 
+  line-height: 1.7;
+}
+
+/* --- HILANGKAN TAMPILAN SCROLLBAR TAPI TETAP BISA SCROLL --- */
+
+.modal-content {
+    /* Untuk Firefox */
+    scrollbar-width: none; 
+    
+    /* Untuk IE dan Edge lama */
+    -ms-overflow-style: none;  
+}
+
+/* Untuk Chrome, Safari, dan Opera */
+.modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+.hero-section {
+  min-height: 90vh;      /* Tinggi hampir setayar */
+  display: flex;
+  align-items: center;   /* Rata tengah vertikal */
+  padding-top: 0;
+}
+
+/* Tampilan HP (Layar Kecil) */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: auto;    /* Jangan paksa setinggi layar */
+    padding-top: 140px;  /* Beri jarak dari Navbar */
+    padding-bottom: 60px;/* Beri jarak ke section bawah */
+    align-items: flex-start; /* Mulai dari atas, jangan di tengah */
+    text-align: left;    /* Rata kiri (opsional, sesuaikan selera) */
+  }
+  
+  /* Kecilkan font Hero sedikit lagi khusus di HP biar muat */
+  .hero-section h1 {
     font-size: 2.5rem; 
   }
 }

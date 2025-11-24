@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import JourneySection from '../components/JourneySection';
 import ProjectSection from '../components/ProjectSection';
 
+// === TIPE DATA ===
 interface Project {
     id: number;
     title: string;
@@ -21,6 +22,7 @@ interface Certificate {
     image: string;
 }
 
+// === DATA SKILL (Tech Stack) ===
 const mySkills = [
     { name: "Python", code: "py", level: "Intermediate", percentage: 70 },
     { name: "PHP", code: "php", level: "Beginner", percentage: 40 },
@@ -37,20 +39,21 @@ const mySkills = [
     { name: "C#", code: "cs", level: "Beginner", percentage: 30 },
 ];
 
+// === DATA SERTIFIKAT ===
 const certificates: Certificate[] = [
     {
         title: "Belajar Dasar Pemrograman Web",
         issuer: "Dicoding Indonesia",
         year: "2023",
-        logo: "/python.jpg",
-        image: "/sertif1.jpg"
+        logo: "/python.jpg", // Ikon kecil (tidak ditampilkan di kartu baru, tapi ada di data)
+        image: "/python.jpg" // File gambar asli di folder public
     },
     {
         title: "Visualisasi Data",
         issuer: "Dicoding Indonesia",
         year: "2023",
         logo: "/visualisasi.png",
-        image: "/sertif2.jpg"
+        image: "/visualisasi.png"
     },
 ];
 
@@ -62,6 +65,7 @@ export default function Home() {
 
     useEffect(() => {
         AOS.init({ duration: 1000, once: true, offset: 100 });
+        // Fetch Project dari Database Supabase
         fetch('http://localhost:3000/projects').then(res => res.json()).then(setProjects);
     }, []);
 
@@ -79,19 +83,27 @@ export default function Home() {
 
     return (
         <main>
-            {/* HERO */}
-            <section id="home" className="container" style={{ minHeight: '90vh', display: 'flex', alignItems: 'center', paddingTop: '0' }}>
+
+            {/* === 1. HERO SECTION (FONT SUDAH DIPERBAIKI) === */}
+            <section id="home" className="container hero-section">
                 <div style={{ width: '100%' }} data-aos="fade-up">
-                    <p style={{ color: '#8B5CF6', letterSpacing: '2px', marginBottom: '1rem', fontWeight: '600' }}>WELCOME TO MY PORTFOLIO</p>
-                    <h1 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: '800', lineHeight: '1.1', marginBottom: '1.5rem' }}>
+
+                    <p style={{ color: '#8B5CF6', letterSpacing: '2px', marginBottom: '1rem', fontWeight: '600', fontSize: '0.9rem' }}>
+                        WELCOME TO MY PORTFOLIO
+                    </p>
+
+                    {/* KEMBALI MENGGUNAKAN H1 AGAR FONT BESAR */}
+                    <h1 style={{ marginBottom: '1.5rem', fontWeight: '800', lineHeight: '1.1' }}>
                         Hi, I'm Yusuf Aditya.<br />
                         <span className="text-gradient-animated">Fullstack Developer.</span>
                     </h1>
-                    <p style={{ maxWidth: '600px', color: '#9CA3AF', fontSize: '1.2rem', marginBottom: '3rem' }}>
+
+                    <p style={{ maxWidth: '600px', color: '#9CA3AF', marginBottom: '3rem', fontSize: '1.1rem', lineHeight: '1.6' }}>
                         Membangun solusi digital yang estetik dan fungsional. Fokus pada performa tinggi dan desain bersih.
                     </p>
+
                     <div style={{ display: 'flex', gap: '1.5rem' }}>
-                        <a href="/cv-yusuf.pdf" download style={{ background: 'white', color: 'black', padding: '14px 32px', borderRadius: '50px', fontWeight: '700', textDecoration: 'none' }}>
+                        <a href="/yusuf-cv.pdf" download style={{ background: 'white', color: 'black', padding: '14px 32px', borderRadius: '50px', fontWeight: '700', textDecoration: 'none' }}>
                             Download CV ⇩
                         </a>
                         <a href="#contact" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: '600', textDecoration: 'none' }}>
@@ -101,42 +113,38 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ABOUT ME (TANPA KOTAK / GLASS CARD) */}
+            {/* === 2. ABOUT ME === */}
             <section id="about" className="container" style={{ marginBottom: '8rem' }}>
                 <div data-aos="fade-up">
-                    {/* GANTI DIV INI: Pakai className 'about-grid' */}
                     <div className="about-grid">
-
-                        {/* Foto (Tambahkan className wrapper) */}
                         <div className="about-image-wrapper" style={{ position: 'relative' }}>
                             <img src="/me.jpg" alt="Profile" style={{ width: '100%', borderRadius: '24px', objectFit: 'cover', aspectRatio: '1/1', filter: 'grayscale(20%)' }} />
                             <div style={{ position: 'absolute', top: '20px', left: '-20px', width: '100%', height: '100%', border: '2px solid #8B5CF6', borderRadius: '24px', zIndex: -1 }}></div>
                         </div>
-
-                        {/* Teks */}
                         <div>
-                            <h2 style={{ fontSize: '3.5rem', marginBottom: '2rem', lineHeight: '1.1' }}>About Me.</h2>
-                            <p style={{ marginBottom: '1.5rem', color: '#D1D5DB', fontSize: '1.25rem', lineHeight: '1.8' }}>
-                                Saya adalah mahasiswa Informatika semester 5. Saya memiliki ketertarikan mendalam pada <b>Software Engineering</b> dan <b>User Interface Design</b>.
+                            <h2 style={{ marginBottom: '1.5rem' }}>About Me.</h2>
+                            <p style={{ marginBottom: '1.5rem', color: '#D1D5DB', fontSize: '1.1rem', lineHeight: '1.8' }}>
+                                Saya adalah mahasiswa Informatika semester 5. Saya percaya kode yang baik tidak hanya jalan, tapi mudah dirawat.
                             </p>
-                            <p style={{ color: '#9CA3AF', fontSize: '1.1rem', lineHeight: '1.8' }}>
-                                Saya percaya bahwa kode yang baik tidak hanya berfungsi, tetapi juga mudah dibaca (clean code) dan mudah dirawat (maintainable). Saat ini saya sedang fokus mendalami React, TypeScript, dan Cloud Architecture.
+                            <p style={{ color: '#9CA3AF', fontSize: '1rem', lineHeight: '1.8' }}>
+                                Saya adalah pribadi disiplin dengan manajemen waktu yang baik dan mampu menyelesaikan tugas secara efisien. Berpengalaman dalam multitasking, saya terbiasa mengelola
+                                beberapa tanggung jawab sekaligus tanpa mengurangi fokus dan ketelitian. Saya juga menyukai bidang
+                                desain untuk mengekspresikan ide saya, serta memiliki keingintahuan tinggi untuk terus belajar dan cepat beradaptasi dengan tantangan baru.
                             </p>
                         </div>
-
                     </div>
                 </div>
             </section>
 
-            {/* JOURNEY (PENDIDIKAN & ORGANISASI) */}
+            {/* === 3. JOURNEY (Imported Component) === */}
             <JourneySection />
 
-            {/* PROJECTS */}
+            {/* === 4. PROJECTS (Imported Component) === */}
             <ProjectSection projects={projects} />
 
-            {/* TECH STACK */}
+            {/* === 5. TECH STACK === */}
             <section id="skills" className="container" style={{ marginBottom: '8rem' }}>
-                <h2 style={{ fontSize: '3rem', marginBottom: '1rem', textAlign: 'center' }} data-aos="fade-up">Tech Stack.</h2>
+                <h2 style={{ textAlign: 'center', marginBottom: '3rem' }} data-aos="fade-up">Tech Stack.</h2>
                 <div className="skills-grid">
                     {mySkills.map((skill, index) => (
                         <div key={index} className="skill-box" data-aos="zoom-in" data-aos-delay={index * 50}>
@@ -156,9 +164,9 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* CERTIFICATES */}
+            {/* === 6. CERTIFICATES === */}
             <section id="certificates" className="container" style={{ marginBottom: '8rem' }}>
-                <h2 style={{ fontSize: '3rem', marginBottom: '3rem' }} data-aos="fade-up">Certifications.</h2>
+                <h2 style={{ marginBottom: '3rem' }} data-aos="fade-up">Certifications.</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
                     {certificates.map((cert, index) => (
                         <div
@@ -167,15 +175,7 @@ export default function Home() {
                             onClick={() => setSelectedCert(cert)}
                             data-aos="fade-up"
                             data-aos-delay={index * 100}
-                            style={{
-                                cursor: 'pointer',
-                                borderLeft: '4px solid #8B5CF6',
-                                padding: '2rem',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                transition: '0.3s'
-                            }}
+                            style={{ cursor: 'pointer', borderLeft: '4px solid #8B5CF6', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', transition: '0.3s' }}
                         >
                             <div>
                                 <h3 style={{ fontSize: '1.2rem', margin: '0 0 0.5rem 0', lineHeight: '1.3', fontWeight: '700' }}>{cert.title}</h3>
@@ -190,7 +190,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* CONTACT */}
+            {/* === 7. CONTACT === */}
             <section id="contact" className="container" style={{ marginBottom: '4rem' }}>
                 <div className="glass-card" style={{ maxWidth: '700px', margin: '0 auto' }} data-aos="zoom-in">
                     <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '0.5rem' }}>Let's Connect.</h2>
@@ -207,24 +207,47 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* MODAL CERTIFICATE */}
+            {/* === MODAL CERTIFICATE (POP-UP) === */}
             {selectedCert && (
                 <div className="modal-overlay" onClick={() => setSelectedCert(null)} style={{ zIndex: 1100 }}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '800px', textAlign: 'center' }}>
+                    <div
+                        className="modal-content"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                            maxWidth: '700px', // Lebar maksimal modal dikurangi dikit
+                            width: '90%',
+                            textAlign: 'center',
+                            maxHeight: '90vh', // Biar modal gak lebih tinggi dari layar
+                            overflowY: 'auto'  // Biar bisa discroll kalau layar HP pendek
+                        }}
+                    >
                         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
                             <button onClick={() => setSelectedCert(null)} style={{ background: 'none', border: 'none', color: 'white', fontSize: '1.5rem', cursor: 'pointer' }}>✕</button>
                         </div>
+
+                        {/* GAMBAR DIBATASI TINGGINYA */}
                         <img
                             src={selectedCert.image}
                             alt={selectedCert.title}
-                            style={{ width: '100%', height: 'auto', borderRadius: '12px', border: '2px solid #8B5CF6' }}
-                            onError={(e) => e.currentTarget.src = 'https://placehold.co/800x600?text=Gambar+Tidak+Ditemukan'}
+                            style={{
+                                maxWidth: '100%',
+                                maxHeight: '60vh', 
+                                width: 'auto',    
+                                objectFit: 'contain',
+                                borderRadius: '8px',
+                                border: '2px solid #8B5CF6',
+                                margin: '0 auto', 
+                                display: 'block'
+                            }}
+                            onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400?text=Gambar+Tidak+Ditemukan'}
                         />
-                        <h3 style={{ marginTop: '1.5rem', fontSize: '1.5rem' }}>{selectedCert.title}</h3>
+
+                        <h3 style={{ marginTop: '1.5rem', fontSize: '1.5rem', lineHeight: '1.3' }}>{selectedCert.title}</h3>
                         <p style={{ color: '#9CA3AF' }}>{selectedCert.issuer} • {selectedCert.year}</p>
                     </div>
                 </div>
             )}
+
         </main>
     );
 }

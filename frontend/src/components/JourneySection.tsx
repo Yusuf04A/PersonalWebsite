@@ -2,38 +2,40 @@ export default function JourneySection() {
     // DATA PENDIDIKAN
     const education = [
         {
-            year: "2021 - SEKARANG",
-            title: "S1 Teknik Informatika",
-            place: "Universitas [Nama Kampusmu]",
-            desc: "IPK Saat ini: 3.xx. Fokus pada Software Engineering dan Web Technologies."
+            year: "2023 - SEKARANG",
+            title: "S1 Informatika",
+            place: "Universitas Islam Indonesia"
         },
         {
-            year: "2018 - 2021",
-            title: "Jurusan IPA / RPL",
-            place: "SMA/SMK [Nama Sekolahmu]",
-            desc: "Lulus dengan nilai rata-rata ujian xx."
+            year: "2020 - 2023",
+            title: "Jurusan IPA",
+            place: "SMAN 1 JETIS"
+        },
+        {
+            year: "2017 - 2020",
+            place: "SMPN 3 JETIS"
         }
     ];
 
     // DATA PENGALAMAN (Lomba, Organisasi, Magang)
     const experiences = [
         {
-            year: "2023",
-            title: "Juara 2 Hackathon Nasional",
-            place: "Penyelenggara: [Nama Penyelenggara]",
-            desc: "Membangun aplikasi web inovatif dalam waktu 24 jam menggunakan React & Node.js."
+            year: "2025",
+            title: "Asisten Laboratorium Siber",
+            place: "Departemen Informatika, Universitas Islam Indonesia",
+            desc: "Membantu Laboratorium Siber dalam pengembangan dan pengelolaan lingkungan praktikum, membimbing mahasiswa melalui praktik keamanan siber dan sistem jaringan secara langsung, menjelaskan konsep dasar keamanan, jaringan, dan pemrograman, serta mendukung operasional laboratorium dan kegiatan pembelajaran secara keseluruhan."
         },
         {
-            year: "2022 - 2023",
-            title: "Ketua Divisi IT",
-            place: "Himpunan Mahasiswa Informatika",
-            desc: "Bertanggung jawab mengelola website himpunan dan mengadakan workshop koding."
+            year: "2025",
+            title: "Hipster (Design & Front-End Role)",
+            place: "Google Developer Group on Campus UII",
+            desc: "Merancang konsep UI/UX, mengembangkan komponen front-end untuk proyek komunitas, dan berkolaborasi dalam membangun pengalaman pengguna yang menarik."
         },
         {
-            year: "2022",
-            title: "Peserta Studi Independen",
-            place: "Dicoding Indonesia (Kampus Merdeka)",
-            desc: "Belajar Front-End Web Development dan UI/UX Design."
+            year: "2022-2023",
+            title: "Olimpiade Penelitian Siswa Indonesia",
+            place: "Pusat Prestasi Nasional (Puspresnas)",
+            desc: "mengembangkan media Pendidikan karakter berbasis Aumented Reality dalam upaya menyampaikan Pendidikan karakter pada remaja milenial."
         }
     ];
 
