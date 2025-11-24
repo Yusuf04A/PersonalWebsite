@@ -300,3 +300,36 @@ p {
     font-size: 2.5rem; 
   }
 }
+
+
+/* frontend/src/index.css */
+
+/* ... kode CSS lainnya ... */
+
+/* --- SOCIAL ICONS DI CONTACT --- */
+.social-icons-container {
+  display: flex;
+  justify-content: center; /* Posisi di tengah */
+  gap: 1.5rem; /* Jarak antar ikon */
+  margin-bottom: 2.5rem;
+}
+
+.social-icon-link {
+  color: var(--text-muted); /* Warna awal abu-abu */
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%; /* Bentuk lingkaran */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+}
+
+.social-icon-link:hover {
+  color: white;
+  border-color: var(--accent);
+  background: var(--accent); /* Jadi ungu pas di-hover */
+  transform: translateY(-5px); /* Efek naik sedikit */
+  box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+}

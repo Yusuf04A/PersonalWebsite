@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import JourneySection from '../components/JourneySection';
 import ProjectSection from '../components/ProjectSection';
 
@@ -22,7 +23,7 @@ interface Certificate {
     image: string;
 }
 
-// === DATA SKILL (Tech Stack) ===
+// === DATA SKILL ===
 const mySkills = [
     { name: "Python", code: "py", level: "Intermediate", percentage: 70 },
     { name: "PHP", code: "php", level: "Beginner", percentage: 40 },
@@ -37,6 +38,7 @@ const mySkills = [
     { name: "Git", code: "git", level: "Intermediate", percentage: 80 },
     { name: "Figma", code: "figma", level: "Beginner", percentage: 40 },
     { name: "C#", code: "cs", level: "Beginner", percentage: 30 },
+    { name: "Kotlin", code: "kotlin", level: "Beginner", percentage: 20 },
 ];
 
 // === DATA SERTIFIKAT ===
@@ -45,65 +47,53 @@ const certificates: Certificate[] = [
         title: "Belajar Dasar Pemrograman Web",
         issuer: "Dicoding Indonesia",
         year: "2023",
-        logo: "/python.jpg", // Ikon kecil (tidak ditampilkan di kartu baru, tapi ada di data)
-        image: "/python.jpg" // File gambar asli di folder public
+        logo: "/python.jpg",
+        image: "/sertif1.jpg" 
     },
     {
         title: "Visualisasi Data",
         issuer: "Dicoding Indonesia",
         year: "2023",
         logo: "/visualisasi.png",
-        image: "/visualisasi.png"
+        image: "/sertif2.jpg" 
     },
 ];
 
 export default function Home() {
     const [projects, setProjects] = useState<Project[]>([]);
     const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
-    const [formStatus, setFormStatus] = useState('idle');
-    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+    // DATA SOCIAL MEDIA (Ganti linknya dengan punyamu)
+    const socialLinks = [
+        { icon: <FaGithub size={30} />, link: "https://github.com/Yusuf04A", label: "GitHub" },
+        { icon: <FaLinkedin size={30} />, link: "https://linkedin.com/in/yusuf-aditya-kresnayana-473a43294/", label: "LinkedIn" },
+        { icon: <FaInstagram size={30} />, link: "https://instagram.com/yusufadity_", label: "Instagram" },
+        { icon: <FaEnvelope size={30} />, link: "yusufadityakresnayana@gmail.com", label: "Email" }
+    ];
 
     useEffect(() => {
         AOS.init({ duration: 1000, once: true, offset: 100 });
-        // Fetch Project dari Database Supabase
         fetch('http://localhost:3000/projects').then(res => res.json()).then(setProjects);
     }, []);
-
-    const handleContact = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setFormStatus('submitting');
-        try {
-            await fetch('http://localhost:3000/contact', {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
-            setFormStatus('success'); setFormData({ name: '', email: '', message: '' });
-        } catch { setFormStatus('error'); }
-    };
 
     return (
         <main>
 
-            {/* === 1. HERO SECTION (FONT SUDAH DIPERBAIKI) === */}
+            {/* === 1. HERO SECTION === */}
             <section id="home" className="container hero-section">
                 <div style={{ width: '100%' }} data-aos="fade-up">
-
                     <p style={{ color: '#8B5CF6', letterSpacing: '2px', marginBottom: '1rem', fontWeight: '600', fontSize: '0.9rem' }}>
                         WELCOME TO MY PORTFOLIO
                     </p>
-
-                    {/* KEMBALI MENGGUNAKAN H1 AGAR FONT BESAR */}
                     <h1 style={{ marginBottom: '1.5rem', fontWeight: '800', lineHeight: '1.1' }}>
                         Hi, I'm Yusuf Aditya.<br />
                         <span className="text-gradient-animated">Fullstack Developer.</span>
                     </h1>
-
                     <p style={{ maxWidth: '600px', color: '#9CA3AF', marginBottom: '3rem', fontSize: '1.1rem', lineHeight: '1.6' }}>
                         Membangun solusi digital yang estetik dan fungsional. Fokus pada performa tinggi dan desain bersih.
                     </p>
-
                     <div style={{ display: 'flex', gap: '1.5rem' }}>
-                        <a href="/yusuf-cv.pdf" download style={{ background: 'white', color: 'black', padding: '14px 32px', borderRadius: '50px', fontWeight: '700', textDecoration: 'none' }}>
+                        <a href="/cv-yusuf.pdf" download style={{ background: 'white', color: 'black', padding: '14px 32px', borderRadius: '50px', fontWeight: '700', textDecoration: 'none' }}>
                             Download CV ⇩
                         </a>
                         <a href="#contact" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'white', padding: '14px 32px', borderRadius: '50px', fontWeight: '600', textDecoration: 'none' }}>
@@ -136,10 +126,10 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* === 3. JOURNEY (Imported Component) === */}
+            {/* === 3. JOURNEY === */}
             <JourneySection />
 
-            {/* === 4. PROJECTS (Imported Component) === */}
+            {/* === 4. PROJECTS === */}
             <ProjectSection projects={projects} />
 
             {/* === 5. TECH STACK === */}
@@ -164,7 +154,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* === 6. CERTIFICATES === */}
+            {/* === 6. CERTIFICATIONS === */}
             <section id="certificates" className="container" style={{ marginBottom: '8rem' }}>
                 <h2 style={{ marginBottom: '3rem' }} data-aos="fade-up">Certifications.</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
@@ -175,7 +165,15 @@ export default function Home() {
                             onClick={() => setSelectedCert(cert)}
                             data-aos="fade-up"
                             data-aos-delay={index * 100}
-                            style={{ cursor: 'pointer', borderLeft: '4px solid #8B5CF6', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', transition: '0.3s' }}
+                            style={{
+                                cursor: 'pointer',
+                                borderLeft: '4px solid #8B5CF6',
+                                padding: '2rem',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                transition: '0.3s'
+                            }}
                         >
                             <div>
                                 <h3 style={{ fontSize: '1.2rem', margin: '0 0 0.5rem 0', lineHeight: '1.3', fontWeight: '700' }}>{cert.title}</h3>
@@ -190,58 +188,62 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* === 7. CONTACT === */}
-            <section id="contact" className="container" style={{ marginBottom: '4rem' }}>
-                <div className="glass-card" style={{ maxWidth: '700px', margin: '0 auto' }} data-aos="zoom-in">
-                    <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '0.5rem' }}>Let's Connect.</h2>
-                    {formStatus === 'success' ? (
-                        <div style={{ textAlign: 'center', padding: '2rem', color: '#4ADE80' }}><h3>✅ Pesan Terkirim!</h3></div>
-                    ) : (
-                        <form onSubmit={handleContact}>
-                            <input className="input-field" placeholder="Nama Kamu" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
-                            <input className="input-field" type="email" placeholder="Email Kamu" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
-                            <textarea className="input-field" rows={5} placeholder="Tulis pesanmu..." required value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} />
-                            <button type="submit" style={{ width: '100%', padding: '14px', background: 'white', color: 'black', border: 'none', borderRadius: '12px', fontWeight: '700', cursor: 'pointer' }}>Kirim Pesan</button>
-                        </form>
-                    )}
+            {/* === 7. CONTACT (MINIMALIS - TANPA FORM) === */}
+            <section id="contact" className="container" style={{ marginBottom: '6rem', textAlign: 'center' }}>
+                <div data-aos="zoom-in">
+                    <h2 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Let's Connect.</h2>
+                    <p style={{ color: '#9CA3AF', marginBottom: '3rem', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 3rem auto' }}>
+                        Punya ide project atau sekadar ingin menyapa? <br /> 
+                        Jangan ragu untuk menghubungi saya lewat sosial media di bawah ini.
+                    </p>
+
+                    {/* --- SOCIAL ICONS (Floating, No Box) --- */}
+                    <div className="social-icons-container">
+                        {socialLinks.map((social, index) => (
+                            <a 
+                                key={index} href={social.link} target="_blank" rel="noopener noreferrer" 
+                                className="social-icon-link" aria-label={social.label}
+                                style={{ fontSize: '1.5rem' }} // Ikon dibesarkan sedikit
+                            >
+                                {social.icon}
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </section>
 
-            {/* === MODAL CERTIFICATE (POP-UP) === */}
+            {/* === MODAL CERTIFICATE === */}
             {selectedCert && (
                 <div className="modal-overlay" onClick={() => setSelectedCert(null)} style={{ zIndex: 1100 }}>
                     <div
                         className="modal-content"
                         onClick={(e) => e.stopPropagation()}
                         style={{
-                            maxWidth: '700px', // Lebar maksimal modal dikurangi dikit
+                            maxWidth: '700px',
                             width: '90%',
                             textAlign: 'center',
-                            maxHeight: '90vh', // Biar modal gak lebih tinggi dari layar
-                            overflowY: 'auto'  // Biar bisa discroll kalau layar HP pendek
+                            maxHeight: '90vh',
+                            overflowY: 'auto'
                         }}
                     >
                         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
                             <button onClick={() => setSelectedCert(null)} style={{ background: 'none', border: 'none', color: 'white', fontSize: '1.5rem', cursor: 'pointer' }}>✕</button>
                         </div>
-
-                        {/* GAMBAR DIBATASI TINGGINYA */}
                         <img
                             src={selectedCert.image}
                             alt={selectedCert.title}
                             style={{
                                 maxWidth: '100%',
-                                maxHeight: '60vh', 
-                                width: 'auto',    
+                                maxHeight: '60vh',
+                                width: 'auto',
                                 objectFit: 'contain',
                                 borderRadius: '8px',
                                 border: '2px solid #8B5CF6',
-                                margin: '0 auto', 
+                                margin: '0 auto',
                                 display: 'block'
                             }}
                             onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400?text=Gambar+Tidak+Ditemukan'}
                         />
-
                         <h3 style={{ marginTop: '1.5rem', fontSize: '1.5rem', lineHeight: '1.3' }}>{selectedCert.title}</h3>
                         <p style={{ color: '#9CA3AF' }}>{selectedCert.issuer} • {selectedCert.year}</p>
                     </div>
