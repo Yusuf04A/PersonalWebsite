@@ -11,10 +11,6 @@ export default function JourneySection() {
             title: "Jurusan IPA",
             place: "SMAN 1 JETIS"
         },
-        {
-            year: "2017 - 2020",
-            place: "SMPN 3 JETIS"
-        }
     ];
 
     // DATA PENGALAMAN (Lomba, Organisasi, Magang)
@@ -32,10 +28,16 @@ export default function JourneySection() {
             desc: "Merancang konsep UI/UX, mengembangkan komponen front-end untuk proyek komunitas, dan berkolaborasi dalam membangun pengalaman pengguna yang menarik."
         },
         {
+            year: "2024",
+            title: "Asisten Penelitian",
+            place: "Universitas Islam Indonesia",
+            desc: "Membantu membuat sebuah aplikasi berbasis android bernama Health Risk Calculator pada penelitian dosen",
+        },
+        {
             year: "2022-2023",
             title: "Olimpiade Penelitian Siswa Indonesia",
             place: "Pusat Prestasi Nasional (Puspresnas)",
-            desc: "mengembangkan media Pendidikan karakter berbasis Aumented Reality dalam upaya menyampaikan Pendidikan karakter pada remaja milenial."
+            desc: "Mengembangkan media Pendidikan karakter berbasis Aumented Reality dalam upaya menyampaikan Pendidikan karakter pada remaja milenial."
         }
     ];
 
